@@ -20,17 +20,24 @@
 const https = require('https');
 const pem = require('pem');
 
-pem.createCertificate({days:1,selfSigned:true},(err,keys)=>{
+pem.createCertificate({
+    days: 1,
+    selfSigned: true
+}, (err, keys) => {
     if (err) {
         throw err
     }
-    https.createServer({key:keys.serviceKey,
-                        cert:keys.certificate},
-                        (req,res)=>{
-                            if(req.url=='/'){
-                                res.writeHead(200,{'content-type':'text/plain'})
-                                res.end(JSON.stringify("hello this is me"));
-                            }
-                        }).listen(5000);
+    https.createServer({
+            key: keys.serviceKey,
+            cert: keys.certificate
+        },
+        (req, res) => {
+            if (req.url == '/') {
+                res.writeHead(200, {
+                    'content-type': 'text/plain'
+                })
+                res.end(JSON.stringify("hello this is me"));
+            }
+        }).listen(5000);
 
 });

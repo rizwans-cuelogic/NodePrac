@@ -1,5 +1,5 @@
 // const fs = require('fs');
-const bl =require('bluebird');
+const bl = require('bluebird');
 
 const pfs = bl.promisifyAll(require('fs'));
 // //reding dir
@@ -31,10 +31,10 @@ const pfs = bl.promisifyAll(require('fs'));
 //         if(stats.isFile()){
 //         pfs.readFileAsync(element,'utf-8').then( (filecontent) =>{
 //                 console.log(filecontent);
-            
+
 //         })
 //     }
-        
+
 //     });
 // }).catch(err => console.log(err));
 
@@ -50,11 +50,12 @@ let md = `
     *THis is file writing
 `;
 
-pfs.writeFileAsync('./content.md',md).then(res=>{
+pfs.writeFileAsync('./content.md', md).then(res => {
     console.log("res");
-   console.log(res); 
-}).catch((err)=>{ console.log(err)});
-
+    console.log(res);
+}).catch((err) => {
+    console.log(err)
+});
 
 let mdappend = `
     appending Content
@@ -64,10 +65,12 @@ let mdappend = `
     *THis is file appending
     *THis is file appending
 `;
-pfs.appendFileAsync('./content.md',mdappend).then(res =>{
+pfs.appendFileAsync('./content.md', mdappend).then(res => {
     console.log("resappend");
-    console.log(res); 
-}).catch((err)=>{ console.log(err)});
+    console.log(res);
+}).catch((err) => {
+    console.log(err)
+});
 
 
 // creating dir if not exists

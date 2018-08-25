@@ -1,23 +1,26 @@
 /* jshint esnext:true 
-*/
+ */
 
 const http = require('http');
 const fs = require('fs');
 
-const server = http.createServer((req,res)=>{
-    if(req.url === '/' && req.method==='GET'){
-        var stream = fs.createReadStream('./public/form.html','utf-8');
-        res.writeHead(200,{'content-type':'text/html'});
+const server = http.createServer((req, res) => {
+    if (req.url === '/' && req.method === 'GET') {
+        var stream = fs.createReadStream('./public/form.html', 'utf-8');
+        res.writeHead(200, {
+            'content-type': 'text/html'
+        });
         stream.pipe(res);
-    }
-    else if(req.url === '/' && req.method ==='POST'){
+    } else if (req.url === '/' && req.method === 'POST') {
         let body = '';
-        req.on('data',(chunk)=>{
+        req.on('data', (chunk) => {
             body += chunk;
         })
-        
-        req.on('end',()=>{
-            res.writeHead(200,{'content-type':'text/plain'});
+
+        req.on('end', () => {
+            res.writeHead(200, {
+                'content-type': 'text/plain'
+            });
             res.end(body);
         })
 
